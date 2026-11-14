@@ -75,5 +75,6 @@ html{scroll-padding-top:110px}
 .delivery-section .deliverable{background:#192227;border-color:#5b6c74}
 .delivery-section .deliverable::after{border-top-color:#263238}
 @media(max-width:760px){.delivery-section .journey-nav button+button{border-top-color:#43535b}.delivery-section .journey-nav button[aria-pressed=true]{background:#35434a}}
+@media(max-width:760px){.decision-section{padding-top:48px}}
 @media(max-width:760px){html{scroll-padding-top:82px}.mobile-menu nav a{min-height:48px;display:flex;align-items:center}.mobile-menu nav .mobile-menu-cta{min-height:52px}}
 @media(prefers-reduced-motion:reduce){.mobile-menu[open] nav,.solution-panel-inner{animation:none}.solution-nav button:active,.architecture-switch button:active,.journey-nav button:active{transform:none}}
