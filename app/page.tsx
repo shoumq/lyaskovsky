@@ -1,0 +1,32 @@
+import type { Metadata } from 'next';
+import Link from 'next/link';
+import { siteUrl } from '@/content';
+import { ContactBand } from '@/components/chrome';
+import { SystemDiagram } from '@/components/system-diagram';
+import { SolutionFinder } from '@/components/solution-finder';
+import { DeliveryJourney } from '@/components/delivery-journey';
+
+export const metadata: Metadata = { alternates: { canonical: '/' } };
+
+export default function Home() {
+  return <main id="main-content">
+    <script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify({'@context':'https://schema.org','@type':'Organization',name:'LYASKOVSKY',url:siteUrl,description:'IT-консалтинг и разработка программного обеспечения для бизнеса'})}}/>
+    <section className="hero hero-engineering">
+      <div className="shell hero-topline"><span>LYASKOVSKY / Software engineering</span><span>Сначала задача. Затем архитектура.</span></div>
+      <div className="shell hero-grid">
+        <div className="hero-main"><div className="hero-context">Заказная разработка для бизнеса</div><h1>Создаём системы,<br/>на которых<br/>работает бизнес.</h1><div className="hero-bottom"><p>Корпоративные платформы, веб-приложения, AI и интеграции. Соединяем процессы и данные в программные продукты, которые можно развивать.</p><div className="hero-actions"><Link className="button-dark" href="/contacts">Обсудить задачу <span aria-hidden="true">↗</span></Link><Link className="text-link" href="#expertise">Найти решение <span aria-hidden="true">↓</span></Link></div></div><div className="hero-proof"><span>Бизнес-анализ</span><i/><span>Архитектура</span><i/><span>Разработка и развитие</span></div></div>
+        <SystemDiagram/>
+      </div>
+      <div className="shell hero-foot"><p>От разрозненных инструментов<br/><strong>к связанной системе.</strong></p><div className="hero-capabilities"><span>Корпоративное ПО</span><span>AI-системы</span><span>Автоматизация</span><span>Интеграции</span></div><span className="hero-scroll" aria-hidden="true">Далее ↓</span></div>
+    </section>
+
+    <section className="solutions-section shell" id="expertise"><div className="section-intro"><div><span className="section-label">От задачи к решению</span><h2>Что должно<br/>работать иначе?</h2></div><p>Выберите направление. Покажем, с какой задачи начать, что спроектировать и какую пользу должно принести решение.</p></div><SolutionFinder/><div className="finder-foot"><p>Не нужно заранее выбирать технологию или готовить полное ТЗ.</p><Link href="/services" className="text-link">Все направления работы ↗</Link></div></section>
+
+    <section className="engineering-section"><div className="shell engineering-grid"><div className="engineering-heading"><span className="section-label">Инженерное мышление</span><h2>Важно не только<br/>что делает система.<br/>Но и как она<br/>ведёт себя.</h2><p>Ниже - примеры вопросов, которые стоит решить при проектировании. Это не универсальный набор технологий: архитектура зависит от задачи.</p><Link href="/services/it-consulting" className="arrow-link"><span>Разобрать архитектуру</span><span aria-hidden="true">↗</span></Link></div><div className="engineering-cases"><article className="engineering-case"><div className="case-heading"><span>Надёжность обмена</span><span className="case-tag">Сбой внешнего API</span></div><div className="retry-diagram" aria-label="Событие сохраняется в очереди и повторяется при недоступности API"><span>Событие</span><i/><strong>Очередь<small>Сохранить · повторить</small></strong><i/><span className="offline-node">Внешний API<small>Временно недоступен</small></span></div><h3>Что произойдёт, если соседняя система не ответит?</h3><p>Для фонового обмена можно сохранить событие в очереди и повторить доставку. Уникальный ключ операции помогает не создать дубликат.</p></article><article className="engineering-case"><div className="case-heading"><span>Контроль AI</span><span className="case-tag">Работа с документами</span></div><div className="ai-review-diagram" aria-label="Запрос проходит через разрешённые источники к ответу с проверкой"><span>Запрос</span><i aria-hidden="true"/><span>Разрешённые<br/>источники</span><i aria-hidden="true"/><strong>Ответ +<br/>проверка</strong></div><h3>На каких данных основан ответ?</h3><p>Поиск в разрешённых источниках, ссылки на документы и проверка человеком позволяют встроить AI в рабочий процесс с понятными ограничениями.</p></article></div></div></section>
+
+    <section className="delivery-section shell" id="approach"><div className="section-intro"><div><span className="section-label">Прозрачность разработки</span><h2>Не чёрный ящик.<br/>Последовательность решений.</h2></div><p>У каждого этапа - свой вопрос и проверяемый результат. Выберите этап, чтобы увидеть, на чём строится следующий шаг.</p></div><DeliveryJourney/></section>
+
+    <section className="decision-section shell"><div><span className="section-label">Перед началом проекта</span><h2>Сначала ясность.<br/>Потом обязательства.</h2><p>Первый разговор нужен, чтобы определить задачу и понять, какой следующий шаг имеет смысл.</p><Link href="/about" className="arrow-link"><span>Наш подход к работе</span><span aria-hidden="true">↗</span></Link></div><div className="decision-questions"><details open><summary>Нужна ли разработка с нуля?<span aria-hidden="true">+</span></summary><p>Не всегда. Сначала стоит проверить, можно ли решить задачу настройкой, интеграцией или доработкой существующих инструментов. Заказное ПО оправданно там, где готовые решения требуют значимых компромиссов.</p></details><details><summary>Как определить сроки и объём?<span aria-hidden="true">+</span></summary><p>После уточнения сценариев и ограничений можно выделить первую версию, зависимости и критерии приёмки. Оценку связываем с этим объёмом; изменения требований требуют пересмотра плана.</p></details><details><summary>Как проверять результат?<span aria-hidden="true">+</span></summary><p>До реализации важно договориться о сценариях и критериях готовности. Проверка должна включать обычные операции, права доступа, ошибки и работу интеграций.</p></details><details><summary>Что будет после запуска?<span aria-hidden="true">+</span></summary><p>Поддержку и развитие обсуждаем отдельно: определяем порядок работы с обращениями, наблюдение за системой и приоритеты изменений. Условия зависят от проекта.</p></details></div></section>
+    <ContactBand/>
+  </main>;
+}
