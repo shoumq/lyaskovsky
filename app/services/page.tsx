@@ -1,3 +1,4 @@
+import { ArrowUpRightIcon } from '@/components/arrow-up-right-icon';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { services } from '@/content';
@@ -29,9 +30,9 @@ export default function Services() {
               <p className="detail-more">{service.detail}</p>
             </div>
             {i < 4 ? (
-              <Link href={`/services/${service.slug}`} aria-label={`Подробнее: ${service.title}`}>Подробнее ↗</Link>
+              <Link href={`/services/${service.slug}`} aria-label={`Подробнее: ${service.title}`}>Подробнее <ArrowUpRightIcon/></Link>
             ) : (
-              <Link href="/contacts" aria-label={`Обсудить: ${service.title}`}>Обсудить ↗</Link>
+              <Link href="/contacts" aria-label={`Обсудить: ${service.title}`}>Обсудить <ArrowUpRightIcon/></Link>
             )}
           </article>
         ))}

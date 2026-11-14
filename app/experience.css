@@ -51,3 +51,29 @@
 .architecture-node .node-symbol{width:20px;height:20px;object-fit:contain}
 .architecture-node[aria-pressed=true] .node-symbol{filter:brightness(1.18)}
 @media(max-width:760px){.solution-flow .flow-glyph{height:41px}.solution-flow .flow-glyph img{width:31px;height:31px}.architecture-node .node-symbol{width:16px;height:16px}}
+
+/* Navigation and state changes */
+html{scroll-padding-top:110px}
+.site-header{position:sticky;top:0;z-index:40;background:#15191cf7}
+.desktop-nav a[aria-current="page"]{color:var(--accent)}
+.desktop-nav a[aria-current="page"]::after{transform:scaleX(1)}
+.mobile-menu nav a[aria-current="page"]{color:var(--accent)}
+.mobile-menu nav .mobile-menu-cta{display:flex;justify-content:space-between;align-items:center;margin-top:12px;padding:15px 0;color:var(--accent);border-bottom:0}
+.mobile-menu[open] nav{animation:menu-enter .18s ease-out both}
+@keyframes menu-enter{from{opacity:0;transform:translateY(-5px)}to{opacity:1;transform:translateY(0)}}
+.solution-panel-inner{display:flex;flex-direction:column;flex:1;min-width:0;animation:panel-enter .2s ease-out both}
+@keyframes panel-enter{from{opacity:.55;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+.solution-nav button:active,.architecture-switch button:active,.journey-nav button:active{transform:translateY(1px)}
+.form-field input,.form-field select,.form-field textarea{transition:border-color .18s,background-color .18s}
+.form-field input:hover,.form-field select:hover,.form-field textarea:hover{border-color:#849197}
+.decision-questions summary:hover{color:var(--accent)}
+.arrow-up-right-icon{display:inline-block;width:10px;height:10px;vertical-align:-.08em;flex:none}
+/* Give the development journey its own surface before the FAQ. */
+.delivery-section{background:#263238;border-block:1px solid #43535b}
+.delivery-section .journey-nav{border-color:#68777e}
+.delivery-section .journey-nav button[aria-pressed=true]{color:#f1f3f0}
+.delivery-section .deliverable{background:#192227;border-color:#5b6c74}
+.delivery-section .deliverable::after{border-top-color:#263238}
+@media(max-width:760px){.delivery-section .journey-nav button+button{border-top-color:#43535b}.delivery-section .journey-nav button[aria-pressed=true]{background:#35434a}}
+@media(max-width:760px){html{scroll-padding-top:82px}.mobile-menu nav a{min-height:48px;display:flex;align-items:center}.mobile-menu nav .mobile-menu-cta{min-height:52px}}
+@media(prefers-reduced-motion:reduce){.mobile-menu[open] nav,.solution-panel-inner{animation:none}.solution-nav button:active,.architecture-switch button:active,.journey-nav button:active{transform:none}}

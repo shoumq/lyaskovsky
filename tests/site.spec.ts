@@ -21,3 +21,17 @@ test('этап разработки показывает результат',asy
 test('мобильная навигация и переход к контенту',async({page,isMobile})=>{await page.goto('/');if(!isMobile){await page.keyboard.press('Tab');await expect(page.getByRole('link',{name:'К содержимому'})).toBeFocused()}if(isMobile){await page.locator('.mobile-menu summary').click();await expect(page.getByRole('navigation',{name:'Мобильная навигация'})).toBeVisible();await page.keyboard.press('Escape');await expect(page.getByRole('navigation',{name:'Мобильная навигация'})).not.toBeVisible()}});
 test('нет ошибок страницы и горизонтальной прокрутки',async({page})=>{const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));for(const path of ['/','/services','/services/software-development','/about','/contacts','/privacy']){await page.goto(path);expect(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),path).toBe(false)}expect(errors).toEqual([])});
 test('prefers-reduced-motion отключает поток',async({page})=>{await page.emulateMedia({reducedMotion:'reduce'});await page.goto('/');expect(await page.locator('.map-route').evaluate(el=>getComputedStyle(el).animationName)).toBe('none')});
+
+test('навигация отмечает текущую страницу и остаётся доступной при прокрутке', async ({page, isMobile}) => {
+  await page.goto('/services/software-development');
+  if (isMobile) {
+    await page.locator('.mobile-menu summary').click();
+    await expect(page.getByRole('navigation', {name:'Мобильная навигация'}).getByRole('link', {name:'Услуги'})).toHaveAttribute('aria-current','page');
+    await page.locator('main').click({position:{x:10,y:200}});
+    await expect(page.getByRole('navigation', {name:'Мобильная навигация'})).not.toBeVisible();
+  } else {
+    await expect(page.getByRole('navigation', {name:'Основная навигация'}).getByRole('link', {name:'Услуги'})).toHaveAttribute('aria-current','page');
+  }
+  await page.evaluate(() => window.scrollTo(0, 800));
+  await expect(page.locator('.site-header')).toBeInViewport();
+});
